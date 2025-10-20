@@ -6,6 +6,7 @@ import 'components/wallet_cards.dart';
 import 'components/saving_plan_card.dart';
 import 'components/transaction_item.dart';
 import 'components/bottom_navigation.dart';
+import 'components/notification_dropdown.dart';
 
 void main() {
   runApp(const EWaMaApp());
@@ -45,9 +46,9 @@ class WalletHomePage extends StatelessWidget {
   final bool isDarkMode;
 
   const WalletHomePage({
-    super.key, 
-    required this.themeToggle, 
-    required this.isDarkMode
+    super.key,
+    required this.themeToggle,
+    required this.isDarkMode,
   });
 
   @override
@@ -96,6 +97,7 @@ class WalletHomePage extends StatelessWidget {
                     ),
                     onPressed: themeToggle,
                   ),
+                  NotificationDropdown(),
                 ],
               ),
             ),
@@ -114,9 +116,8 @@ class WalletHomePage extends StatelessWidget {
                     children: [
                       Text(
                         'My Wallet',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -134,7 +135,10 @@ class WalletHomePage extends StatelessWidget {
                             SizedBox(width: 4),
                             Text(
                               'New Card',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
                             ),
                           ],
                         ),
@@ -153,9 +157,8 @@ class WalletHomePage extends StatelessWidget {
                     children: [
                       Text(
                         'Saving Plan',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -173,7 +176,10 @@ class WalletHomePage extends StatelessWidget {
                             SizedBox(width: 4),
                             Text(
                               'New',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
                             ),
                           ],
                         ),
@@ -192,11 +198,13 @@ class WalletHomePage extends StatelessWidget {
                     children: [
                       Text(
                         'Transaction History',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      TextButton(onPressed: () {}, child: const Text('See More')),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text('See More'),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -237,7 +245,9 @@ class WalletHomePage extends StatelessWidget {
                     amount: '+\$350.00',
                     isExpense: false,
                   ),
-                  const SizedBox(height: 80), // Add some bottom padding to account for bottom navigation
+                  const SizedBox(
+                    height: 80,
+                  ), // Add some bottom padding to account for bottom navigation
                 ],
               ),
             ),
