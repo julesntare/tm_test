@@ -7,6 +7,7 @@ import 'components/saving_plan_card.dart';
 import 'components/transaction_item.dart';
 import 'components/bottom_navigation.dart';
 import 'components/notification_dropdown.dart';
+import 'pages/statistics_page.dart';
 
 void main() {
   runApp(const EWaMaApp());
@@ -21,10 +22,17 @@ class EWaMaApp extends StatefulWidget {
 
 class _EWaMaAppState extends State<EWaMaApp> {
   bool _isDarkMode = false;
+  int _currentPage = 0; // 0: Home, 1: Scan, 2: Stats, 3: Menu
 
   void _toggleTheme() {
     setState(() {
       _isDarkMode = !_isDarkMode;
+    });
+  }
+
+  void _setPage(int page) {
+    setState(() {
+      _currentPage = page;
     });
   }
 
@@ -36,7 +44,12 @@ class _EWaMaAppState extends State<EWaMaApp> {
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: WalletHomePage(themeToggle: _toggleTheme, isDarkMode: _isDarkMode),
+      home: WalletHomePage(
+        themeToggle: _toggleTheme,
+        isDarkMode: _isDarkMode,
+        currentPage: _currentPage,
+        onPageChanged: _setPage,
+      ),
     );
   }
 }
@@ -44,11 +57,15 @@ class _EWaMaAppState extends State<EWaMaApp> {
 class WalletHomePage extends StatefulWidget {
   final VoidCallback themeToggle;
   final bool isDarkMode;
+  final int currentPage;
+  final Function(int) onPageChanged;
 
   const WalletHomePage({
     super.key,
     required this.themeToggle,
     required this.isDarkMode,
+    required this.currentPage,
+    required this.onPageChanged,
   });
 
   @override
@@ -56,8 +73,6 @@ class WalletHomePage extends StatefulWidget {
 }
 
 class _WalletHomePageState extends State<WalletHomePage> {
-  int _currentPage = 0; // 0: Home, 1: Scan, 2: Stats, 3: Menu
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -265,29 +280,31 @@ class _WalletHomePageState extends State<WalletHomePage> {
       bottomNavigationBar: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: BottomNavigation(
-          currentPage: _currentPage,
+          currentPage: widget.currentPage,
           onHomePressed: () {
-            setState(() {
-              _currentPage = 0;
-            });
+            widget.onPageChanged(0);
           },
           onScanPressed: () {
-            setState(() {
-              _currentPage = 1;
-            });
+            widget.onPageChanged(1);
           },
           onStatsPressed: () {
-            setState(() {
-              _currentPage = 2;
+            widget.onPageChanged(2);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const StatisticsPage(),
+              ),
+            ).then((_) {
+              // When user comes back from statistics page, reset to home
+              widget.onPageChanged(0);
             });
           },
           onMenuPressed: () {
-            setState(() {
-              _currentPage = 3;
-            });
+            widget.onPageChanged(3);
           },
         ),
       ),
     );
   }
 }
+
