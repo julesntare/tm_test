@@ -30,37 +30,140 @@ const VisiteHero = () => {
       
       {/* Content */}
       <div className="container mx-auto px-6 py-32 relative z-10">
-        <div 
-          className="max-w-3xl opacity-0 translate-y-10"
-          style={{ animation: 'slideInLeft 0.8s ease-out 0.3s forwards' }}
-        >
+        <div className="max-w-3xl">
           <p 
-            className="text-muted-foreground text-sm mb-8 tracking-wider uppercase flex items-center gap-3 opacity-0"
-            style={{ animation: 'fadeIn 0.8s ease-out 0.5s forwards' }}
+            data-scroll-id="visite-subtitle"
+            className="text-muted-foreground text-sm mb-8 tracking-wider uppercase flex items-center gap-3"
           >
             <span className="w-8 h-px bg-muted-foreground"></span>
-            Journey to new frontiers, journey to Noto Nature Park
+            <span 
+              data-scroll-effect="slide-up"
+              className="inline-block transition-all duration-700 ease-out"
+            >
+              Journey to new frontiers, journey to 
+            </span>
+            <span 
+              data-scroll-effect="slide-up"
+              className="inline-block transition-all duration-700 ease-out delay-100"
+            >
+              Noto Nature Park
+            </span>
           </p>
           
           <h1 
-            className="text-[10rem] md:text-[12rem] font-light mb-8 leading-none tracking-tighter opacity-0"
-            style={{ animation: 'rotateIn 0.8s ease-out 0.7s forwards' }}
+            data-scroll-id="visite-title"
+            className="text-[10rem] md:text-[12rem] font-light mb-8 leading-none tracking-tighter transition-all duration-700 ease-out"
           >
-            VISITE
+            {`VISITE`.split('').map((char, index) => (
+              <span 
+                key={`visite-title-${index}`}
+                data-scroll-effect="fade"
+                className="inline-block transition-all duration-500 ease-out"
+                style={{ 
+                  animationDelay: `${index * 50}ms`,
+                }}
+              >
+                {char}
+              </span>
+            ))}
           </h1>
           
           <p 
-            className="text-foreground/80 text-lg mb-12 leading-relaxed max-w-xl opacity-0"
-            style={{ animation: 'fadeIn 0.8s ease-out 1s forwards' }}
+            data-scroll-id="visite-description"
+            className="text-foreground/80 text-lg mb-12 leading-relaxed max-w-xl transition-all duration-700 ease-out whitespace-pre-wrap"
           >
-            Away from the manic energy of Japan's famous metropoles lies the ancient hamlet of Noto. Surprising and captivating in equal measure. Noto is a region like no other. Soaring peaks, lakes and endless waterfalls.
+            {`Away from the manic energy of Japan's `.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc1-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${wordIndex * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+            {`famous metropoles lies the `.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc2-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${(5 + wordIndex) * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+            {`ancient hamlet of Noto. `.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc3-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${(10 + wordIndex) * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+            <br />
+            {`Surprising and captivating in equal measure. `.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc4-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${(15 + wordIndex) * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+            {`Noto is a region like no other. `.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc5-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${(25 + wordIndex) * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
+            {`Soaring peaks, lakes and endless waterfalls.`.split(' ').map((word, wordIndex, allWords) => (
+              <span 
+                key={`desc6-${wordIndex}`}
+                data-scroll-effect="fade"
+                className="transition-all duration-300 ease-out"
+                style={{ 
+                  animationDelay: `${(35 + wordIndex) * 50}ms`,
+                  display: 'inline',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {word}{wordIndex < allWords.length - 1 ? ' ' : ''}
+              </span>
+            ))}
           </p>
           
           <Button 
+            data-scroll-id="visite-button"
             onClick={handleScrollToNext}
-            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 group opacity-0"
+            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 group"
             size="lg"
-            style={{ animation: 'fadeIn 0.8s ease-out 1.3s forwards' }}
           >
             Start the journey
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

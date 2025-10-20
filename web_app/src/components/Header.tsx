@@ -23,7 +23,19 @@ const Header = () => {
           className="text-2xl font-light tracking-tight text-primary cursor-pointer"
           onClick={() => scrollToSection(0)}
         >
-          Notosan
+          {`Notosan`.split('').map((char, index) => (
+            <span 
+              key={`logo-${index}`}
+              className="inline-block transition-all duration-500 ease-out"
+              style={{ 
+                animationDelay: `${index * 50}ms`,
+                opacity: 1,
+                transform: 'translateY(0)',
+              }}
+            >
+              {char}
+            </span>
+          ))}
         </div>
         
         <div className="hidden md:flex items-center gap-8">

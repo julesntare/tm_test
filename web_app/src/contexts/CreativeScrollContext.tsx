@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import useEnhancedCreativeScroll from '@/hooks/useEnhancedCreativeScroll';
+import useScrollTextAnimations from '@/hooks/useScrollTextAnimations';
 
 interface ScrollSection {
   id: string;
@@ -23,6 +24,7 @@ export const CreativeScrollProvider: React.FC<{
   sections: ScrollSection[]
 }> = ({ children, sections }) => {
   const scrollHook = useEnhancedCreativeScroll(sections);
+  useScrollTextAnimations(); // Initialize scroll text animations
 
   return (
     <CreativeScrollContext.Provider value={scrollHook}>
