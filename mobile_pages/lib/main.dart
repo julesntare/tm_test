@@ -188,7 +188,7 @@ class WalletHomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Saving Plan Card
+                  // Multiple Saving Plans with different transition
                   const SavingPlanCard(),
                   const SizedBox(height: 24),
 
