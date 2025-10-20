@@ -1,10 +1,10 @@
-# mobile_pages
+# E-WaMa (E-Wallet Manager)
 
-A new Flutter project.
+E-Wallet Manager - A Flutter application for managing digital wallets.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for the E-WaMa application.
 
 A few resources to get you started if this is your first Flutter project:
 
