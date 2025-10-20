@@ -41,7 +41,7 @@ class _EWaMaAppState extends State<EWaMaApp> {
   }
 }
 
-class WalletHomePage extends StatelessWidget {
+class WalletHomePage extends StatefulWidget {
   final VoidCallback themeToggle;
   final bool isDarkMode;
 
@@ -50,6 +50,13 @@ class WalletHomePage extends StatelessWidget {
     required this.themeToggle,
     required this.isDarkMode,
   });
+
+  @override
+  State<WalletHomePage> createState() => _WalletHomePageState();
+}
+
+class _WalletHomePageState extends State<WalletHomePage> {
+  int _currentPage = 0; // 0: Home, 1: Scan, 2: Stats, 3: Menu
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +99,10 @@ class WalletHomePage extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                     icon: Icon(
-                      isDarkMode ? Icons.wb_sunny : Icons.nightlight_round,
+                      widget.isDarkMode ? Icons.wb_sunny : Icons.nightlight_round,
                       color: Theme.of(context).iconTheme.color,
                     ),
-                    onPressed: themeToggle,
+                    onPressed: widget.themeToggle,
                   ),
                   NotificationDropdown(),
                 ],
@@ -256,16 +263,28 @@ class WalletHomePage extends StatelessWidget {
       ),
       // Bottom Navigation
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: BottomNavigation(
+          currentPage: _currentPage,
           onHomePressed: () {
-            // Handle home navigation
+            setState(() {
+              _currentPage = 0;
+            });
           },
           onScanPressed: () {
-            // Handle scan action
+            setState(() {
+              _currentPage = 1;
+            });
+          },
+          onStatsPressed: () {
+            setState(() {
+              _currentPage = 2;
+            });
           },
           onMenuPressed: () {
-            // Handle menu action
+            setState(() {
+              _currentPage = 3;
+            });
           },
         ),
       ),
