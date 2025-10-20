@@ -107,6 +107,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   html {
@@ -116,5 +118,177 @@ All colors MUST be HSL.
   h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
     letter-spacing: -0.02em;
+  }
+}
+
+/* Custom scroll transition animations */
+@layer utilities {
+  .snap-start {
+    scroll-snap-align: start;
+  }
+  
+  .scroll-transition {
+    scroll-behavior: smooth;
+  }
+  
+  html.is-scrolling {
+    scroll-behavior: auto;
+  }
+  
+  html.is-scrolling * {
+    animation-play-state: paused !important;
+  }
+  
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Fade in from up animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade in from down animation */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scale in animation */
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Slide from left animation */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Slide from right animation */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Rotate in animation */
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-5deg) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+  
+  /* Fade in with delay */
+  .animate-fade-in-delayed {
+    animation: fadeIn 0.8s ease-out 0.5s forwards;
+  }
+  
+  /* Creative scroll indicator animations */
+  .creative-scroll-indicator {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Parallax scroll effect */
+  .parallax-scroll {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Section transition effects */
+  .section-enter {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .section-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Text reveal animation */
+  .text-reveal {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .text-reveal span {
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 0.6s ease-out;
+  }
+  
+  .text-reveal.revealed span {
+    transform: translateY(0);
+  }
+  
+  /* Creative page transition overlay */
+  .page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(270 60% 65% / 0.1);
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease-out;
+  }
+  
+  .is-scrolling ~ .page-transition-overlay {
+    opacity: 1;
+    z-index: 40;
   }
 }
